@@ -1,0 +1,20 @@
+3,4c3,4
+<         if pt in diagram:
+<             diagram[pt] += 1
+---
+>         if diagram[pt[0]][pt[1]]:
+>             diagram[pt[0]][pt[1]] += 1
+6c6
+<             diagram[pt] = 1
+---
+>             diagram[pt[0]][pt[1]] = 1
+27c27,29
+< diagram = {}
+---
+> diagram = []
+> for i in range(1000):
+>     diagram.append([0] * 1000)
+40c42
+< print("total =", sum([v > 1 for k,v in diagram.items()]))
+---
+> print("total =", sum([v > 1 for r in diagram for v in r]))
