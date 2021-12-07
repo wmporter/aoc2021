@@ -20,7 +20,7 @@ def averages(values):
 def distance(values, pos):
     return sum([abs(pos-v) for v in values])
 
-with open("sample") as f:
+with open("input") as f:
     input = list(map(int, f.readline().strip().split(",")))
 
 mean, median, mode = averages(input)
