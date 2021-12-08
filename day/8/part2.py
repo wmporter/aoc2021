@@ -27,7 +27,6 @@ with open("input") as f:
 
 count = 0
 for line in input:
-    new_mapping = {}
     segments, digits = line.strip().split("|")
     segments = segments.split()
 
@@ -46,13 +45,15 @@ for line in input:
     mid = three - seven - bot
     top_left = four - (one | mid)
 
-    new_mapping[top.pop()] = 'a'
-    new_mapping[top_left.pop()] = 'b'
-    new_mapping[top_right.pop()] = 'c'
-    new_mapping[mid.pop()] = 'd'
-    new_mapping[bot_left.pop()] = 'e'
-    new_mapping[bot_right.pop()] = 'f'
-    new_mapping[bot.pop()] = 'g'
+    new_mapping = {
+        top.pop(): 'a',
+        top_left.pop(): 'b',
+        top_right.pop(): 'c',
+        mid.pop(): 'd',
+        bot_left.pop(): 'e',
+        bot_right.pop(): 'f',
+        bot.pop(): 'g',
+    }
 
     digits = digits.split()
     value = 0
