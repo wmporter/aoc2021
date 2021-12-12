@@ -3,7 +3,6 @@ class Node:
         self.name = name
         self.children = []
         self.path = path + [self.name]
-            
 
     def __str__(self):
         return """Node: {}
@@ -14,18 +13,13 @@ def build_tree(graph):
     for c in graph["start"]:
         root.children.append(Node(c, root.path))
     queue = root.children[:]
-    doubled = False
+
     while queue:
         cur = queue.pop(0)
         for c in graph.get(cur.name, []):
             if c[0].isupper() or c not in cur.path:
                 cur.children.append(Node(c, cur.path))
-            elif c[0].islower() and c not in ("start", "end"):
-                if c in cur.path and not doubled:
-                    cur.children.append(Node(c, cur.path))
-                    doubled = True
-        if cur.children == []:
-            doubled = False
+            
         queue.extend(cur.children[:])
     return root
 
