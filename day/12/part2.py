@@ -13,7 +13,7 @@ class Node:
             else:
                 self.doubled = True
         else:
-            self.visits[self.name] = True    
+            self.visits[self.name] = True
 
     def __str__(self):
         return """Node: {}
@@ -24,8 +24,9 @@ def build_tree(graph):
     for c in graph["start"]:
         root.children.append(Node(c, root.path))
     queue = root.children[:]
-    while queue:
-        cur = queue.pop(0)
+    index = 0
+    while index < len(queue):
+        cur = queue[index]
         for c in graph.get(cur.name, []):
             if c[0].isupper() or c not in cur.path:
                 cur.children.append(Node(c, cur.path, cur.visits, cur.doubled))
@@ -33,6 +34,7 @@ def build_tree(graph):
                 if c in cur.visits and not cur.doubled:
                     cur.children.append(Node(c, cur.path, cur.visits, cur.doubled))
         queue.extend(cur.children[:])
+        index += 1
     return root
 
 def traverse_tree(root):
